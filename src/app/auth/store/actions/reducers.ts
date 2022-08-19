@@ -1,4 +1,4 @@
-import { IAuthState } from '../../interface/authRegister.interface';
+import { IAuthState } from '../../types/authState.interface';
 import { Action, createReducer, on } from '@ngrx/store';
 import { registerAction } from './register.action';
 const initialState: IAuthState = {
