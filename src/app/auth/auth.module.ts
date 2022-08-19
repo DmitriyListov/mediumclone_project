@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/actions/reducers';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
@@ -22,5 +23,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
   ],
+  providers: [AuthService],
 })
 export class AuthModule {}

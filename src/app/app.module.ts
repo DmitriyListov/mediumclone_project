@@ -7,10 +7,12 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     AuthModule,
