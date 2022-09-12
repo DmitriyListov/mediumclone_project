@@ -5,6 +5,7 @@ import { registerAction } from '../../store/actions/register.action';
 import { Observable } from 'rxjs';
 import { isSubmittingSelector } from '../../store/actions/selectors';
 import { AuthService } from '../../services/auth.service';
+import { IRegisterRequest } from '../../types/registerReques.interface';
 
 @Component({
   selector: 'mc-register',
@@ -39,7 +40,9 @@ export class RegisterComponent implements OnInit {
     });
   }
   public onSubmit(): void {
-    this.store.dispatch(registerAction(this.registerForm.value));
-    this.authService.register(this.registerForm.value).subscribe();
+    const request: IRegisterRequest = {
+      user: this.registerForm.value,
+    };
+    this.store.dispatch(registerAction({ request }));
   }
 }
