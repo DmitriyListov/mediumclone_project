@@ -3,9 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { registerAction } from '../../store/actions/register.action';
 import { Observable } from 'rxjs';
-import { isSubmittingSelector } from '../../store/actions/selectors';
-import { AuthService } from '../../services/auth.service';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from '../../store/actions/selectors';
 import { IRegisterRequest } from '../../types/registerReques.interface';
+import { IBackendErrors } from '../../../shared/types/backendErrors.interface';
 
 @Component({
   selector: 'mc-register',
@@ -17,11 +20,9 @@ export class RegisterComponent implements OnInit {
 
   public isSubmitting$: Observable<boolean>;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private store: Store,
-    private authService: AuthService
-  ) {}
+  public backendErrors$: Observable<IBackendErrors | null>;
+
+  constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   public ngOnInit(): void {
     this.initializeForm();
@@ -30,16 +31,18 @@ export class RegisterComponent implements OnInit {
 
   public initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   public initializeForm(): void {
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
       email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
   public onSubmit(): void {
+    console.log('this.registerForm.value', this.registerForm.value)
     const request: IRegisterRequest = {
       user: this.registerForm.value,
     };
