@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import {
   isSubmittingSelector,
   validationErrorsSelector,
-} from '../../store/actions/selectors';
+} from '../../store/selectors';
 import { IRegisterRequest } from '../../types/registerReques.interface';
 import { IBackendErrors } from '../../../shared/types/backendErrors.interface';
 
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     });
   }
   public onSubmit(): void {
-    console.log('this.registerForm.value', this.registerForm.value)
+    console.log('this.registerForm.value', this.registerForm.value);
     const request: IRegisterRequest = {
       user: this.registerForm.value,
     };
