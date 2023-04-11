@@ -6,15 +6,16 @@ import {
   registerSuccessAction,
 } from '../actions/register.action';
 import { AuthService } from '../../services/auth.service';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ICurrentUser } from '../../../shared/types/curentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistenceService } from '../../../shared/service/persistence.service';
 import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class RegisterEffect {
-  register$ = createEffect(() =>
+  register$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(registerAction),
       switchMap(({ request }) =>
