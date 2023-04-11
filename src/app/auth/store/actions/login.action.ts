@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ActionType } from '../types/actionType';
+import { ActionType } from '../types/action-type';
 import { ILoginRequest } from '../../types/loginRequestInterface';
 import { ICurrentUser } from '../../../shared/types/curentUser.interface';
 import { IBackendErrors } from '../../../shared/types/backendErrors.interface';
